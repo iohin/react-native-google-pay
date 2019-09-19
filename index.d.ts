@@ -1,3 +1,6 @@
+import React, {Component} from "react";
+import {StyleProp, ViewStyle} from "react-native";
+
 type EnvironmentType = number
 
 export type AllowedCardNetworkType = "AMEX" | "DISCOVER" | "JCB" | "MASTERCARD"| "VISA"
@@ -27,11 +30,19 @@ export interface RequestDataType {
 }
 
 declare class GooglePay {
-  static ENVIRONMENT_TEST: EnvironmentType
-  static ENVIRONMENT_PRODUCTION: EnvironmentType
-  static setEnvironment: (environment: EnvironmentType) => void
-  static isReadyToPay: (allowedCardNetworks: AllowedCardNetworkType[], allowedCardAuthMethods: AllowedCardAuthMethodsType[]) => Promise<boolean>
+  static ENVIRONMENT_TEST: EnvironmentType;
+  static ENVIRONMENT_PRODUCTION: EnvironmentType;
+  static setEnvironment: (environment: EnvironmentType) => void;
+  static isReadyToPay: (allowedCardNetworks: AllowedCardNetworkType[], allowedCardAuthMethods: AllowedCardAuthMethodsType[]) => Promise<boolean>;
   static requestPayment: (requestData: RequestDataType) => Promise<string>
 }
 
-export { GooglePay }
+export interface GooglePayButtonProps {
+  style?: StyleProp<ViewStyle>;
+}
+
+declare class GooglePayButton extends Component<GooglePayButtonProps>{
+  style?: StyleProp<ViewStyle>;
+}
+
+export { GooglePay, GooglePayButton }

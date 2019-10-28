@@ -119,6 +119,12 @@ public class RNGooglePayModule extends ReactContextBaseJavaModule {
       return;
     }
 
+    if (mPaymentsClient == null) {
+      Log.w(TAG, "[GooglePay] mPaymentsClient == null");
+      promise.resolve(false);
+      return;
+    }
+
     // The call to isReadyToPay is asynchronous and returns a Task. We need to provide an
     // OnCompleteListener to be triggered when the result of the call is known.
     Task<Boolean> task = mPaymentsClient.isReadyToPay(request);
